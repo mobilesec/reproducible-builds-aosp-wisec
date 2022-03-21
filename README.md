@@ -19,7 +19,7 @@ The following are the baseline requirements that users need to ensure manually b
 5. Install gnuplot, which we use to generate the figures summarizing the quantitative data.
 6. Install git.
 7. Checkout [this Git repository](https://github.com/mobilesec/reproducible-builds-aosp-wisec) and switch to that folder.
-8. Optionally, create an empty working directory and provide the absolute path via the environment variable `RB_AOSP_BASE`. This directory must exist and be empty. If the variable is unset, our framework defaults to `${HOME}/aosp` (which is created automatically if it does not exist).
+8. Optionally, create a working directory and provide the absolute path via the environment variable `RB_AOSP_BASE`. This directory must exist. If the variable is unset, our framework defaults to `${HOME}/aosp` (which is created automatically if it does not exist).
 
 ## Execution
 

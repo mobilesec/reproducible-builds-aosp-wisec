@@ -30,8 +30,8 @@ main() {
     fi
     
     # Guard checks
-    if [[ ! -d "$RB_AOSP_BASE" ]] || [[ "$(ls -A $RB_AOSP_BASE)" ]]; then
-        echo "RB_AOSP_BASE at ${RB_AOSP_BASE} either does not exist or is not empty, not proceeding"
+    if [[ ! -d "$RB_AOSP_BASE" ]]; then
+        echo "RB_AOSP_BASE at ${RB_AOSP_BASE} does not exist, not proceeding"
         exit 2
 	fi
     local -ri FREE_BYTES="$(df --block-size=1 "${RB_AOSP_BASE}" | awk '$3 ~ /[0-9]+/ { print $4 }')"
