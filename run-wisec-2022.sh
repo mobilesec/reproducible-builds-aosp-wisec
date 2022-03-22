@@ -35,7 +35,7 @@ main() {
         exit 2
 	fi
     local -ri FREE_BYTES="$(df --block-size=1 "${RB_AOSP_BASE}" | awk '$3 ~ /[0-9]+/ { print $4 }')"
-    local -ri MIN_BYTES=$(( 400*1000*1000*1000 ))
+    local -ri MIN_BYTES=$(( 900*1000*1000*1000 ))
     if (( FREE_BYTES < MIN_BYTES )); then
         echo "RB_AOSP_BASE at ${RB_AOSP_BASE} has less than ${MIN_BYTES} available, see https://source.android.com/setup/build/requirements#hardware-requirements"
         exit 3
@@ -64,7 +64,7 @@ main() {
 
     # Check out
     declare -r RB_PROJECT="${HOME}/reproducible-builds-aosp"
-    declare -r RB_PROJECT_REF="v2.4.1"
+    declare -r RB_PROJECT_REF="v2.5.0"
     if [[ ! -d "$RB_PROJECT" ]]; then
         git clone "git@github.com:mobilesec/reproducible-builds-aosp.git" "$RB_PROJECT"
     fi
