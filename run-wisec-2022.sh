@@ -140,6 +140,15 @@ main() {
         rm "${HOME}/.gitconfig"
     fi
 
+    # Collect metric values for the APEX comparison table
+    local -r REPORT_DIR="${RB_AOSP_BASE}/diff/android-12.0.0_r4_raven-user_Google__android-12.0.0_r4_aosp_raven-user_docker-Ubuntu18.04"
+    local -r APEX_TABLE_TEMPLATE="./template/table-1_partial.tex"
+    local -r APEX_TABLE_DIR="${RB_AOSP_BASE}/apex-table"
+    mkdir -p "$APEX_TABLE_DIR"
+    "./scripts/generate-apex-table.sh" "$REPORT_DIR" "$APEX_TABLE_TEMPLATE" "$APEX_TABLE_DIR"
+
+    echo "Completed generation of APEX table"
+
     # Collect metric values from individual builds
     local -r GNUPLOT_DATA_DIR="${RB_AOSP_BASE}/gnuplot-data"
     mkdir -p "$GNUPLOT_DATA_DIR"
