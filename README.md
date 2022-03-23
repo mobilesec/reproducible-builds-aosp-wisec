@@ -15,7 +15,7 @@ The following are the baseline requirements that users need to ensure manually b
 1. Start with a Linux distribution with Docker support.
 2. Ensure there is at least 900GB of free storage (In addition to the AOSP storage requirements we need some additional space to store the build and analysis artifacts for the 43 builds).
 3. Install Docker (see [here](https://docs.docker.com/engine/install/)).
-4. The user account used to run our scripts must be able to execute Docker commands without superuser privileges (see [here](https://docs.docker.com/engine/install/linux-postinstall/\#manage-docker-as-a-non-root-user)).
+4. The user account used to run our scripts must be able to execute Docker commands without superuser privileges (see [here](https://docs.docker.com/engine/install/linux-postinstall#manage-docker-as-a-non-root-user)).
 5. Install gnuplot, which we use to generate the figures summarizing the quantitative data.
 6. Install git.
 7. Checkout [this Git repository](https://github.com/mobilesec/reproducible-builds-aosp-wisec) and switch to that folder.
