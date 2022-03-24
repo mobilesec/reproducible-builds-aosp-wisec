@@ -79,7 +79,7 @@ main() {
 
     # Check out
     declare -r RB_PROJECT="${HOME}/reproducible-builds-aosp"
-    declare -r RB_PROJECT_REF="v2.5.2"
+    declare -r RB_PROJECT_REF="v2.5.3"
     if [[ ! -d "$RB_PROJECT" ]]; then
         git clone --depth=1 "--branch=${RB_PROJECT_REF}" "https://github.com/mobilesec/reproducible-builds-aosp.git" "$RB_PROJECT"
     fi
