@@ -51,9 +51,13 @@ main() {
         echo "RB_AOSP_BASE at ${RB_AOSP_BASE} has less than the recommended minimum ${MIN_BYTES} bytes available."
         prompt_confirm "Continue anyways?" || exit 3
 	fi
-    if [[ ! -f "${HOME}/.gitconfig" ]]; then
-        echo "No git configuration for the logged in user, placing a dummy version into your home directory."
-        cp "./gitconfig" "${HOME}/.gitconfig"
+    if [[ "$( git config "user.name" )" == "" ]]; then
+        echo "No git configuration for the user name, setting a dummy value."
+        git config --global "user.name" "Reproducible Builds dev"
+    fi
+    if [[ "$( git config "user.email" )" == "" ]]; then
+        echo "No git configuration for the e-mail address, setting a dummy value."
+        git config --global "user.email" "dev@rb-aosp.invalid"
     fi
     if ! docker -v; then
         echo "Docker not installed, refer to the official install instructions at https://docs.docker.com/engine/install/ for guidance."
@@ -144,9 +148,11 @@ main() {
         echo "Finished build and analysis of device images"
     )
 
-    if cmp --silent "./gitconfig" "${HOME}/.gitconfig"; then
-        echo "Removing gitconfig from you home directory again since we placed it there."
-        rm "${HOME}/.gitconfig"
+    if [[ "$( git config "user.name" )" == "Reproducible Builds dev" ]]; then
+        git config --global --unset "user.name"
+    fi
+    if [[ "$( git config "user.email" )" == "dev@rb-aosp.invalid" ]]; then
+        git config --global --unset "user.email"
     fi
 
     # Collect metric values for the APEX comparison table
