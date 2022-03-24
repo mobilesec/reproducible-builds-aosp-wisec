@@ -181,7 +181,11 @@ main() {
 
     echo "Generated figures via gnuplot"
 
-    echo "All done, see ${RB_AOSP_BASE}/figure for output"
+    echo "All done."
+    echo "- The resulting LaTeX code for Table 1 is located in ${RB_AOSP_BASE}/apex-table/table-1.tex."
+	echo "- The resulting image PDF files for Figure 2 are located in ${RB_AOSP_BASE}/figure/summary-over-time-generic.metric.diff-score.pdf and ${RB_AOSP_BASE}/figure/summary-over-time-generic.metric.weight-score.pdf."
+	echo "- The resulting image PDF files for Figure 3 are located in ${RB_AOSP_BASE}/figure/summary-over-time-device.metric.diff-score.pdf and ${RB_AOSP_BASE}/figure/summary-over-time-device.metric.weight-score.pdf."
+	echo "- The resulting analysis reports are located in ${RB_AOSP_BASE}/diff/."
 }
 
 main "$@"
