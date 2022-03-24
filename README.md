@@ -2,7 +2,7 @@
 # Automating the Quantitative Analysis of Reproducibility for Build Artifacts derived from the Android Open Source Project -- Recreating the Quantitative Analysis
 
 This repository accompanies the following scientific publication:
-- Manuel Pöll and Michael Roland. 2022. Automating the Quantitative Analysis of Reproducibility for Build Artifacts derived from the Android Open Source Project. In WiSec ’22: 15th ACM Conference on Security and Privacy in Wireless and Mobile Networks, May 16–19, 2022, San Antonio, Texas, USA. ACM, New York, NY, USA, 13 pages. https://doi.org/10.1145/xxxxxxx.xxxxxxx
+- Manuel Pöll and Michael Roland. 2022. Automating the Quantitative Analysis of Reproducibility for Build Artifacts derived from the Android Open Source Project. In WiSec '22: 15th ACM Conference on Security and Privacy in Wireless and Mobile Networks, May 16–19, 2022, San Antonio, TX, USA. ACM, New York, NY, USA, 14 pages. https://doi.org/10.1145/3507657.3528537
 
 The [Simple Opinionated AOSP builds by an external Party (SOAP)](https://github.com/mobilesec/reproducible-builds-aosp) project is a framework to build AOSP according to the documented instructions and compare built artifacts against reference images by Google, resulting in SOAP difference reports about uncovered quantitative differences. See the linked main project and publication for more details.
 
@@ -13,7 +13,7 @@ In our publication we present a quantitative analysis for a selection of specifi
 The following are the baseline requirements that users need to ensure manually by themselves before running the master script:
 
 1. Start with a Linux distribution with Docker support.
-2. Ensure there is at least 900GB of free storage (In addition to the AOSP storage requirements we need some additional space to store the build and analysis artifacts for the 43 builds).
+2. Ensure there is at least 900GB of overall storage (In addition to the AOSP storage requirements we need some additional space to store the build and analysis artifacts for the 43 builds).
 3. Install Docker (see [here](https://docs.docker.com/engine/install/)).
 4. The user account used to run our scripts must be able to execute Docker commands without superuser privileges (see [here](https://docs.docker.com/engine/install/linux-postinstall#manage-docker-as-a-non-root-user)).
 5. Install gnuplot, which we use to generate the figures summarizing the quantitative data.
@@ -47,9 +47,7 @@ Copyright 2022 Manuel Pöll
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
+You may obtain a copy of the License at https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
