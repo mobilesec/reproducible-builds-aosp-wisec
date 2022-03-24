@@ -34,9 +34,9 @@ main() {
         echo "RB_AOSP_BASE at ${RB_AOSP_BASE} does not exist, not proceeding"
         exit 2
 	fi
-    local -ri OVERALL_BYTES="$(df --block-size=1 "${RB_AOSP_BASE}" | awk '$3 ~ /[0-9]+/ { print $2 }')"
-    local -ri MIN_BYTES=$(( 900*1000*1000*1000 ))
-    if (( OVERALL_BYTES < MIN_BYTES )); then
+    local -ri FREE_BYTES="$(df --block-size=1 "${RB_AOSP_BASE}" | awk '$3 ~ /[0-9]+/ { print $4 }')"
+    local -ri MIN_BYTES=$(( 750*1000*1000*1000 ))
+    if (( FREE_BYTES < MIN_BYTES )); then
         echo "RB_AOSP_BASE at ${RB_AOSP_BASE} has less than ${MIN_BYTES} available, see https://source.android.com/setup/build/requirements#hardware-requirements"
         exit 3
 	fi
