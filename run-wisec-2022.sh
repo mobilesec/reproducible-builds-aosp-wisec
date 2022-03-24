@@ -16,6 +16,17 @@
 
 set -o errexit -o nounset -o pipefail -o xtrace
 
+prompt_confirm() {
+    while true; do
+        read -r -n 1 -p "$1 [Y/n]: " res
+        case $res in
+        [yY]|"") echo ; return 0 ;;
+        [nN]) echo ; return 1 ;;
+        *) echo "invalid input"
+        esac
+    done  
+}
+
 main() {
 	# Argument sanity check
 	if [[ "$#" -ne 0 ]]; then
@@ -37,8 +48,8 @@ main() {
     local -ri FREE_BYTES="$(df --block-size=1 "${RB_AOSP_BASE}" | awk '$3 ~ /[0-9]+/ { print $4 }')"
     local -ri MIN_BYTES=$(( 750*1000*1000*1000 ))
     if (( FREE_BYTES < MIN_BYTES )); then
-        echo "RB_AOSP_BASE at ${RB_AOSP_BASE} has less than ${MIN_BYTES} available, see https://source.android.com/setup/build/requirements#hardware-requirements"
-        exit 3
+        echo "RB_AOSP_BASE at ${RB_AOSP_BASE} has less than the recommended minimum ${MIN_BYTES} bytes available."
+        prompt_confirm "Continue anyways?" || exit 3
 	fi
     if [[ ! -f "${HOME}/.gitconfig" ]]; then
         echo "No git configuration for the logged in user, placing a dummy version into your home directory."
