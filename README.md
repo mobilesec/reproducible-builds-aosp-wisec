@@ -56,7 +56,7 @@ We gratefully acknowledge financial support by the Austrian Federal Ministry for
 
 ## License
 
-Copyright (C) 2022 Johannes Kepler University Linz, Institute of Networks and Security
+Copyright (C) 2022 Johannes Kepler University Linz, Institute of Networks and Security<br>
 Copyright (C) 2022 Manuel Pöll
 
 Licensed under the Apache License, Version 2.0 (the "License");
