@@ -52,16 +52,32 @@ main() {
         prompt_confirm "Continue anyways?" || exit 3
 	fi
     if [[ "$( git config "user.name" )" == "" ]]; then
-        echo "No git configuration for the user name, setting a dummy value."
+        echo "No username configured for Git, setting a dummy value."
         git config --global "user.name" "Reproducible Builds dev"
     fi
     if [[ "$( git config "user.email" )" == "" ]]; then
-        echo "No git configuration for the e-mail address, setting a dummy value."
+        echo "No e-mail address configured for Git, setting a dummy value."
         git config --global "user.email" "dev@rb-aosp.invalid"
     fi
     if ! docker -v; then
         echo "Docker not installed, refer to the official install instructions at https://docs.docker.com/engine/install/ for guidance."
         exit 5
+    fi
+    local -r DOCKER_EXECUTABLE="$(which docker)"
+    local docker_in_snap=0
+    if [[ "$DOCKER_EXECUTABLE" = /snap/* ]]; then
+        echo "You seem to be using the snap version of Docker. Running the snap version of Docker is currently not supported."
+        docker_in_snap=1
+    else
+        if which snap >/dev/null && snap list docker 2>/dev/null; then
+            echo "Docker is installed as a snap package. Running the snap version of Docker is currently not supported."
+            echo "However, your Docker executable ${DOCKER_EXECUTABLE} does not look like a snap executable. If you are sure that you are not using the snap version of Docker it may be safe to continue."
+            prompt_confirm "Are you sure that you want to continue?" || docker_in_snap=2
+        fi
+    fi
+    if [[ "$kernel_image_fix_applied" -gt 0 ]]; then
+        echo "Please remove the Docker snap package and install Docker according to the official install instructions at https://docs.docker.com/engine/install/."
+        exit 10
     fi
     if ! id -Gn | grep 'docker'; then
         echo "User is not member of docker group, required for automated docker builds/runs, see https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user ."
@@ -72,9 +88,22 @@ main() {
         exit 7
     fi
     local -r KERNEL_IMAGE="/boot/vmlinuz-$(uname -r)"
+    local kernel_image_fix_applied=0
     if [[ ! -r "$KERNEL_IMAGE" ]]; then
-        echo "Current kernel image at $KERNEL_IMAGE is not world-readable, see \"guestfs can not mount images\" subsection in main repository."
-        exit 8
+        echo "Current kernel image at $KERNEL_IMAGE is not world-readable, see https://github.com/mobilesec/reproducible-builds-aosp#guestfs-cant-mount-images (section \"guestfs can not mount images\") for a fix."
+        echo ""
+        echo "As a quick fix, you can use"
+        echo ""
+        echo "    sudo chmod +r \"${KERNEL_IMAGE}\""
+        echo ""
+        echo "to make the current kernel image world-readable."
+        prompt_confirm "Apply this fix and continue?" || exit 8
+        if sudo chmod +r "${KERNEL_IMAGE}"; then
+            kernel_image_fix_applied=1
+        else
+            echo "Failed to apply the fix!"
+            exit 9
+        fi
     fi
 
     # Check out
@@ -153,6 +182,10 @@ main() {
     fi
     if [[ "$( git config "user.email" )" == "dev@rb-aosp.invalid" ]]; then
         git config --global --unset "user.email"
+    fi
+    if [[ "$kernel_image_fix_applied" -gt 0 ]]; then
+        echo "Undoing kernel image world-readable fix."
+        sudo chmod go-r "${KERNEL_IMAGE}"
     fi
 
     # Collect metric values for the APEX comparison table
