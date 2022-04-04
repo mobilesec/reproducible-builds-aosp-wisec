@@ -75,7 +75,7 @@ main() {
             prompt_confirm "Are you sure that you want to continue?" || docker_in_snap=2
         fi
     fi
-    if [[ "$kernel_image_fix_applied" -gt 0 ]]; then
+    if [[ "$docker_in_snap" -gt 0 ]]; then
         echo "Please remove the Docker snap package and install Docker according to the official install instructions at https://docs.docker.com/engine/install/."
         exit 10
     fi
