@@ -23,7 +23,7 @@ The following are the baseline requirements that users need to ensure manually b
 7. Checkout [this Git repository](https://github.com/mobilesec/reproducible-builds-aosp-wisec) and switch to that folder.
 8. Optionally, create a working directory and provide the absolute path via the environment variable `RB_AOSP_BASE`. This directory must exist. If the variable is unset, our framework defaults to `${HOME}/aosp` (which is created automatically if it does not exist).
 
-See [Common Issues](https://github.com/mobilesec/reproducible-builds-aosp#common-issues) in the main repository additional problems that may arise and for solutions to them.
+See [Common Issues](https://github.com/mobilesec/reproducible-builds-aosp#common-issues) in the main repository regarding potential additional problems that may arise and for solutions to them.
 
 
 ## Execution
