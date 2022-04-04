@@ -1,4 +1,4 @@
-# Automating the Quantitative Analysis of Reproducibility for Build Artifacts derived from the Android Open Source Project -- Recreating the Quantitative Analysis
+# Automating the Quantitative Analysis of Reproducibility for Build Artifacts derived from the Android Open Source Project: Recreating the Quantitative Analysis
 
 This repository aims at replicating the results presented in:
 - [Manuel Pöll and Michael Roland: *"Automating the Quantitative Analysis of Reproducibility for Build Artifacts derived from the Android Open Source Project"*, in WiSec '22: 15th ACM Conference on Security and Privacy in Wireless and Mobile Networks, San Antonio, TX, USA, ACM, 2022](https://www.digidow.eu/publications/2022-poell-wisec/Poell_2022_WiSec2022_ReproducibilityAOSP.pdf). DOI [10.1145/3507657.3528537](https://doi.org/10.1145/3507657.3528537) (*accepted for publication*)
@@ -50,7 +50,7 @@ In this section we briefly describe the steps taken by the master automation scr
 
 ## Acknowledgements
 
-This work has been carried out within the scope of Digidow, the Christian Doppler Laboratory for Private Digital Authentication in the Physical World and has partially been supported by ONCE (FFG grant FO999887054 in the program ``IKT der Zukunft'') and the LIT Secure and Correct Systems Lab.
+This work has been carried out within the scope of Digidow, the Christian Doppler Laboratory for Private Digital Authentication in the Physical World and has partially been supported by ONCE (FFG grant FO999887054 in the program "IKT der Zukunft") and the LIT Secure and Correct Systems Lab.
 We gratefully acknowledge financial support by the Austrian Federal Ministry for Digital and Economic Affairs (BMDW), the Austrian Federal Ministry for Climate Action, Environment, Energy, Mobility, Innovation and Technology (BMK), the National Foundation for Research, Technology and Development, the Christian Doppler Research Association, 3 Banken IT GmbH, ekey biometric systems GmbH, Kepler Universitätsklinikum GmbH, NXP Semiconductors Austria GmbH & Co KG, Österreichische Staatsdruckerei GmbH, and the State of Upper Austria.
 
 
